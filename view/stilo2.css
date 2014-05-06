@@ -1,0 +1,56 @@
+
+
+
+QWidget{
+background-color: #E5E8F1;
+color:#C3C6CF;
+
+}
+
+QTableWidget{
+background-color: #E5E8F1;
+alternate-background-color: #E5E8F1;
+color: grey;
+border: none;
+font:11px;
+}
+
+
+QHeaderView::section:Horizontal
+{   color:#1E7A08;
+    background-color: #E5E8F1;
+    font: bold;
+    border:none;
+    alternate-background-color: red;
+font:11px;
+}
+
+
+
+QHeaderView::section:Vertical
+{
+    background-color: #E5E8F1;
+    border:none;
+}
+
+
+QLineEdit {
+ background-color: #E5E8F1;
+ color:#1E7A08;
+ 
+
+}
+
+
+QPushButton
+{
+   border:10px;
+    
+}
+
+QPushButton:pressed
+{
+    }
+
+
+
