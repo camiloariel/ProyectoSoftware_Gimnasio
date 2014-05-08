@@ -47,6 +47,7 @@ class TablaReserva(QTableWidget):
 		self.refreshTable()
 
 	def refreshTable(self):
+		#QApplication.setOverrideCursor(QCursor(Qt.WaitCursor))
 		r = Reserva()
 		r.idCancha = self.idCancha
 		r.fecha = self.fecha
@@ -121,7 +122,7 @@ class TablaReserva(QTableWidget):
 				self.setItem(x-10, 4, QTableWidgetItem(""))
 				for j in xrange(1,5):
 					self.item(x-10,j).setBackground(QBrush(QColor(46,66,43)))
-
+		#QApplication.restoreOverrideCursor()
 
 
 	def addReserva(self,index,usuario, fecha, hora):
