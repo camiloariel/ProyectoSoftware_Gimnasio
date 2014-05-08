@@ -3,6 +3,7 @@ from PyQt4.QtCore import *
 from view.tablaReserva import TablaReserva
 from view.tablaCalendario import TablaCalendario
 from view.calendario import Calendario
+from controller.cancha import Cancha
 
 from view.tablaCalendario import TablaCalendario
 from menu import Menu 
@@ -19,17 +20,9 @@ class GestionCancha2(QWidget):
 		self.titulo.setStyleSheet('background:#1E7907; font:25px; color:white;')
 		self.titulo.setContentsMargins(0, 10, 0, 10)
 
-
-		"""
-		self.botonExit = QPushButton(' CERRAR ')
-		self.botonExit.setIcon(QIcon("images/icons/botonCerrar.png"))
-		self.botonExit.clicked.connect(QCoreApplication.instance().quit)
-		self.botonExit.setIconSize(QSize(0,50))
-		self.botonExit.setStyleSheet('background:#1E7A08; font:25px')
-			
-		
-		
-		"""
+		self.canchas_list = Cancha().findAll()
+		self.canchas_len = len(self.canchas_list)
+		self.canchas_cont = 0
 		#DBDEE2
 		self.fecha = QLabel('Fechaa 12-12-12')
 		self.fecha.setStyleSheet('background:#E4E8EE; font:17px; color:black;  ')
@@ -45,14 +38,16 @@ class GestionCancha2(QWidget):
 
 		self.imgCanchas = QLabel()
 		self.imgCanchas.setContentsMargins(0, 0, 0, 0)
-		self.cambiaImagenCancha("images/Banner (2).png")
+		self.setImagenCancha("images/Banner (2).png")
+		
 		
 
-
-		self.NomCancha = QLabel('CAMPO SINTETICO NUMERO 1')
+		self.NomCancha = QLabel()
 		self.NomCancha.setStyleSheet('background:#E5E8F1; font:17px; color:black;')
 		self.NomCancha.setAlignment(Qt.AlignCenter)
 		self.NomCancha.setContentsMargins(10, 10, 10, 10)
+		
+		self.setCancha(0)
 		
 		self.buttonAnt = QPushButton()
 		self.buttonAnt.setIcon(QIcon("images/icons/Copy of icono_flecha_verde.png"))  
@@ -107,14 +102,16 @@ class GestionCancha2(QWidget):
 	
 
 	def event_canchaAnterior(self):
-		self.cambiaImagenCancha("images/cancha_baby.png")
+		self.canchas_cont = (self.canchas_cont-1)%self.canchas_len
+		self.setCancha(self.canchas_cont)
 
 	def event_canchaSiguiente(self):
-		self.cambiaImagenCancha("images/cancha_baby.png")
+		self.canchas_cont = (self.canchas_cont+1)%self.canchas_len
+		self.setCancha(self.canchas_cont)
 		
 		
 		
-	def cambiaImagenCancha(self, img):
+	def setImagenCancha(self, img):
 		myPixmap = QPixmap(img)
 		width = int(self.main.width)
 		if width> 1300:
@@ -122,5 +119,12 @@ class GestionCancha2(QWidget):
 		elif width >=1024:
 			width = int(self.main.width)*0.85
 		self.imgCanchas.setPixmap(myPixmap.scaled(width,768*0.25))
+		
+		
+	def	setCancha(self, index):
+		cancha = self.canchas_list[index]
+		self.NomCancha.setText(cancha.descripcion)
+		self.setImagenCancha("images/cancha_baby.png")
+		
 		
 		
