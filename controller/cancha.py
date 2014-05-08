@@ -14,7 +14,7 @@ class Cancha():
 		resp = con.execute()
 		cancha = []
 		for x in resp:
-			cancha.append(Cancha(x["ID_CANCHA"],x["PRECIO"],x["DESCRIPCION"],x["ID_TIPO_CANCHA"]))
+			cancha.append(Cancha(x["ID_CANCHA"],x["PRECIO"],x["DESCRIPCION"],x["ID_TIPO_CANCHA"],x["IMG"]))
 		return cancha
 
 	def findByIdTipoCancha(self, id):
@@ -28,5 +28,5 @@ class Cancha():
 			return None
 		else:
 			for x in resp:
-				cancha.append(Cancha(x["ID_CANCHA"],x["PRECIO"],x["DESCRIPCION"],x["ID_TIPO_CANCHA"]))
+				cancha.append(Cancha(x["ID_CANCHA"],x["PRECIO"],x["DESCRIPCION"],x["ID_TIPO_CANCHA"],x["IMG"]))
 			return cancha
