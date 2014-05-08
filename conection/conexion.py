@@ -15,7 +15,8 @@ class Conexion():
 			self.json = json
 	
 		def execute(self):
-			f=None
+			QApplication.setOverrideCursor(QCursor(QPixmap("images/icons/loading.gif").scaled(40,40)))
+			f=None 
 			try:
 				f = urllib.urlopen("http://%s/controller/%s?accion=%s&id=%s&json=%s" % (self.url,self.controller,self.accion,self.id,self.json))
 			except IOError:
@@ -23,9 +24,11 @@ class Conexion():
 				sys.exit()
 			rl = f.readline()
 			decoded = json.loads(rl)
+			QApplication.restoreOverrideCursor()
 			return decoded
 	
 		def executeCUD(self):
+			QApplication.setOverrideCursor(QCursor(Qt.WaitCursor))
 			f=None
 			try:
 				f = urllib.urlopen("http://%s/controller/%s?accion=%s&id=%s&json=%s" % (self.url,self.controller,self.accion,self.id,self.json))
@@ -33,5 +36,6 @@ class Conexion():
 				QMessageBox.about(QWidget(),"Error de Conexion", "Existe un error de conexion, porfavor, revisar red de Internet")
 				sys.exit()
 			rl = f.readline()
+			QApplication.restoreOverrideCursor()
 			return rl
 	
