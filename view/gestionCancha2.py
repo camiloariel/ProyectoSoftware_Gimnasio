@@ -124,7 +124,7 @@ class GestionCancha2(QWidget):
 	def	setCancha(self, index):
 		cancha = self.canchas_list[index]
 		self.NomCancha.setText(cancha.descripcion)
-		self.setImagenCancha("images/cancha_baby.png")
+		self.setImagenCancha("images/%s.png" % (index))
 		
 		
 		
