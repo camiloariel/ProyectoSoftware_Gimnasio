@@ -19,9 +19,7 @@ class GestionCancha2(QWidget):
 		self.titulo.setStyleSheet('background:#1E7907; font:25px; color:white;')
 		self.titulo.setContentsMargins(0, 10, 0, 10)
 
-		
-        
-		
+
 		"""
 		self.botonExit = QPushButton(' CERRAR ')
 		self.botonExit.setIcon(QIcon("images/icons/botonCerrar.png"))
@@ -46,15 +44,9 @@ class GestionCancha2(QWidget):
 
 
 		self.imgCanchas = QLabel()
-		myPixmap = QPixmap('images/banner2.png')
-		width = int(self.main.width)
-		if width> 1300:
-			width = int(self.main.width)*0.88
-		elif width >=1024:
-			width = int(self.main.width)*0.85
-		myScaledPixmap = myPixmap.scaled(width,768*0.25)
-		self.imgCanchas.setPixmap(myScaledPixmap)
 		self.imgCanchas.setContentsMargins(0, 0, 0, 0)
+		self.cambiaImagenCancha("images/Banner (2).png")
+		
 
 
 		self.NomCancha = QLabel('CAMPO SINTETICO NUMERO 1')
@@ -66,13 +58,13 @@ class GestionCancha2(QWidget):
 		self.buttonAnt.setIcon(QIcon("images/icons/Copy of icono_flecha_verde.png"))  
 		self.buttonAnt.setStyleSheet('background-color:#E5E8F1;')
 		self.buttonAnt.setMaximumSize(200, 50)
-		#self.connect(self.buttonAnt, SIGNAL('clicked()'), self.event_canchaAnterior)
+		self.connect(self.buttonAnt, SIGNAL('clicked()'), self.event_canchaAnterior)
 		
 		self.buttonSig = QPushButton()
 		self.buttonSig.setIcon(QIcon("images/icons/icono_flecha_verde - 2.png"))
 		self.buttonSig.setStyleSheet('background-color:#E5E8F1;')
 		self.buttonSig.setMaximumSize(200, 50)
-		#self.connect(self.buttonSig, SIGNAL('clicked()'), self.event_canchaSiguiente)
+		self.connect(self.buttonSig, SIGNAL('clicked()'), self.event_canchaSiguiente)
 
 
 		self.layoutCanchafecha = QHBoxLayout()
@@ -115,12 +107,20 @@ class GestionCancha2(QWidget):
 	
 
 	def event_canchaAnterior(self):
-		myPixmap = QPixmap('images/cancha_basquetball.png')
-		myScaledPixmap = myPixmap.scaled(self.imgCanchas.size(), Qt.KeepAspectRatio)
-		self.imgCanchas.setPixmap(myScaledPixmap)
+		self.cambiaImagenCancha("images/cancha_baby.png")
 
 	def event_canchaSiguiente(self):
-		myPixmap = QPixmap('images/cancha_baby.png')
-		myScaledPixmap = myPixmap.scaled(self.imgCanchas.size(), Qt.KeepAspectRatio)
-		self.imgCanchas.setPixmap(myScaledPixmap)
+		self.cambiaImagenCancha("images/cancha_baby.png")
+		
+		
+		
+	def cambiaImagenCancha(self, img):
+		myPixmap = QPixmap(img)
+		width = int(self.main.width)
+		if width> 1300:
+			width = int(self.main.width)*0.88
+		elif width >=1024:
+			width = int(self.main.width)*0.85
+		self.imgCanchas.setPixmap(myPixmap.scaled(width,768*0.25))
+		
 		
