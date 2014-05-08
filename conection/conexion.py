@@ -16,7 +16,7 @@ class Conexion():
 	
 		def execute(self):
 			QApplication.setOverrideCursor(QCursor(QPixmap("images/icons/loading.gif").scaled(40,40)))
-			f=None
+			f=None 
 			try:
 				f = urllib.urlopen("http://%s/controller/%s?accion=%s&id=%s&json=%s" % (self.url,self.controller,self.accion,self.id,self.json))
 			except IOError:
