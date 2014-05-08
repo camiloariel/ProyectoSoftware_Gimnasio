@@ -3,7 +3,6 @@ from PyQt4.QtCore import *
 from view.tablaReserva import TablaReserva
 from view.tablaCalendario import TablaCalendario
 from view.calendario import Calendario
-from view.Prueba import Prueba as Mcalendario
 from view.tablaCalendario import TablaCalendario
 import datetime
 import sys
