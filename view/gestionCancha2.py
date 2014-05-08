@@ -1,14 +1,9 @@
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from view.tablaReserva import TablaReserva
-from view.tablaCalendario import TablaCalendario
 from view.calendario import Calendario
 from controller.cancha import Cancha
-
-from view.tablaCalendario import TablaCalendario
 from menu import Menu 
-import datetime
-import sys
 
 
 class GestionCancha2(QWidget):
@@ -29,17 +24,13 @@ class GestionCancha2(QWidget):
 		self.fecha.setAlignment(Qt.AlignCenter)
 		self.fecha.setContentsMargins(10, 10, 10, 10)
 		
-		tRes = TablaReserva(main, self)
-		self.panelCalendario = Calendario(tRes)
+		self.tRes = TablaReserva(main, self)
+		self.panelCalendario = Calendario(self.tRes)
 		with open("view/stilo2.css") as f:
 			self.panelCalendario.setStyleSheet(f.read())
 
-
-
 		self.imgCanchas = QLabel()
 		self.imgCanchas.setContentsMargins(0, 0, 0, 0)
-		self.setImagenCancha("images/Banner (2).png")
-		
 		
 
 		self.NomCancha = QLabel()
@@ -70,7 +61,7 @@ class GestionCancha2(QWidget):
 		
 		
 		self.layoutTablaReserva =  QHBoxLayout()
-		self.layoutTablaReserva.addWidget(tRes)
+		self.layoutTablaReserva.addWidget(self.tRes)
 		self.layoutTablaReserva.setContentsMargins(50, 0, 50, 0)
 		
 		self.layoutPanelCancha = QVBoxLayout()
@@ -125,6 +116,6 @@ class GestionCancha2(QWidget):
 		cancha = self.canchas_list[index]
 		self.NomCancha.setText(cancha.descripcion)
 		self.setImagenCancha("images/%s.png" % (index))
-		
-		
+		self.tRes.idCancha = str(cancha.idCancha)
+		self.tRes.refreshTable()
 		
